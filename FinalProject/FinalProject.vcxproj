@@ -143,6 +143,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FindAllPossiblePlayerMoves.c" />
+    <ClCompile Include="FindSingleSourceMoves.c" />
+    <ClCompile Include="FindSingleSourceOptimalMove.c" />
+    <ClCompile Include="LoadBoard.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="PlayGame.c" />
+    <ClCompile Include="StoreBoard.c" />
+    <ClCompile Include="Turn.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\FindAllPossiblePlayerMoves.h" />
+    <ClInclude Include="Headers\FindSingleSourceMoves.h" />
+    <ClInclude Include="Headers\FindSingleSourceOptimalMove.h" />
+    <ClInclude Include="Headers\LoadBoard.h" />
+    <ClInclude Include="Headers\PlayGame.h" />
+    <ClInclude Include="Headers\StoreBoard.h" />
+    <ClInclude Include="Headers\Turn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
