@@ -8,19 +8,22 @@ typedef struct _checkersPos
 } checkersPos;
 
 typedef unsigned char Board[BOARD_SIZE][BOARD_SIZE];
-
+const unsigned char SYMBOL=' ';
 typedef unsigned char Player;
 
+const Player PLAYER_A='B';
+const Player PLAYER_B='T';
+
 //1
-/*typedef struct _SingleSourceMovesTreeNode{
+typedef struct _SingleSourceMovesTreeNode{
     Board  board;
     checkersPos *pos;
     unsigned short total_captures_so_far;
     struct _SingleSourceMovesReeNode  *next_move[2];
 } SingleSourceMovesTreeNode;
 
-typedef struct _SingleSourceMovesRee {
-    singleSoutceMovesTreeNode;
+typedef struct _SingleSourceMovesTree {
+    SingleSourceMovesTreeNode *source;
 } SingleSourceMovesTree;
 
 //2
@@ -44,4 +47,4 @@ typedef struct _multipleSourceMovesListCell {
 typedef struct _multipleSourceMovesList {
     MultipleSourceMovesListCell *head;
     MultipleSourceMovesListCell *tai;
-} MultipleSourceMovesList;*/
+} MultipleSourceMovesList;

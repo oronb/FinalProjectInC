@@ -3,7 +3,7 @@
 
 void createBoard(Board board,Player playerA,Player playerB)
 {
-    const unsigned char SYMBOL=' ';
+
     int row,col, sizeHalfBoard=(BOARD_SIZE/2)-1;
 
     buildThirdBoard(board,0,sizeHalfBoard,playerA,SYMBOL);
@@ -35,6 +35,5 @@ void buildThirdBoard(Board board,unsigned int firstRow,unsigned int endRow,Playe
             board[row][col+1]=secondChar;
 
         }
-
     }
 }

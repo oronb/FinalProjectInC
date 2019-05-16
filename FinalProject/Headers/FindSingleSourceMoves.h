@@ -2,4 +2,4 @@
 
 #include <General.h>
 
-SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src);
+SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)

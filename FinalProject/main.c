@@ -7,8 +7,7 @@
 #include <createBoard.h>
 #include <printBoard.h>
 
-const Player PLAYER_A='B';
-const Player PLAYER_B='T';
+
 //Define Functions
 
 /*SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree); //2
