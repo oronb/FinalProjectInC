@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include <General.h>
 #include <createBoard.h>
+#include <printBoard.h>
 
 const Player PLAYER_A='B';
-const Player PLAYER_B='A';
+const Player PLAYER_B='T';
 //Define Functions
 
 /*SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree); //2
@@ -21,4 +22,5 @@ void main()
 {
     Board board;
     createBoard(board,PLAYER_A,PLAYER_B);
+    printBoard(board);
 }

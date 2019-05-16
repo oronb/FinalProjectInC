@@ -9,7 +9,7 @@ void createBoard(Board board,Player playerA,Player playerB)
     buildThirdBoard(board,0,sizeHalfBoard,playerA,SYMBOL);
     for(row = sizeHalfBoard; row < sizeHalfBoard + 2; row++)
     {
-        for(col = 0; col < BOARD_SIZE-1; col=col+2)
+        for(col = 0; col < BOARD_SIZE; col++)
         {
             board[row][col]=SYMBOL;
         }
@@ -21,7 +21,8 @@ void buildThirdBoard(Board board,unsigned int firstRow,unsigned int endRow,Playe
 {
     int row, col;
     char firstChar, secondChar;
-    for (row = firstRow; row < endRow; row++) {
+    for (row = firstRow; row < endRow; row++)
+    {
         if (row % 2 == 0) {
             firstChar = symbol;
             secondChar = player;
@@ -29,9 +30,9 @@ void buildThirdBoard(Board board,unsigned int firstRow,unsigned int endRow,Playe
             firstChar = player;
             secondChar = symbol;
         }
-        for (col = firstRow; col < endRow; col = col + 2) {
+        for (col = 0; col < BOARD_SIZE; col = col + 2) {
             board[row][col]=firstChar;
-            board[row][col]=secondChar;
+            board[row][col+1]=secondChar;
 
         }
 
