@@ -1,8 +1,5 @@
-//
-// Created by Oron Bortman on 2019-05-13.
-//
+#pragma once
 
-#ifndef FINALPROJECT_FINDSINGLESOURCEMOVES_H
-#define FINALPROJECT_FINDSINGLESOURCEMOVES_H
+#include <General.h>
 
-#endif //FINALPROJECT_FINDSINGLESOURCEMOVES_H
+SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src);
