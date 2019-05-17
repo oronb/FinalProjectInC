@@ -16,6 +16,8 @@ add_executable(FinalProject
       #  Headers/StoreBoard.h
       #  Headers/Turn.h
         Headers/printBoard.h
+       # Headers/Tree.h
+       # Tree.c
         createBoard.c
       #  FindAllPossiblePlayerMoves.c
        # FindSingleSourceMoves.c

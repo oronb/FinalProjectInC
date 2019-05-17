@@ -13,7 +13,9 @@ typedef unsigned char Player;
 
 const Player PLAYER_A='B';
 const Player PLAYER_B='T';
-
+const int RIGHT_MOVE_INDEX=1;
+const int LEFT_MOVE_INDEX=0;
+const int NEXT_MOVE_SIZE=2;
 //1
 typedef struct _SingleSourceMovesTreeNode{
     Board  board;
