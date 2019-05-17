@@ -1,5 +1,4 @@
 
-#include <General.h>
 #include <Tree.h>
 #include <FindSingleSourceMoves.h>
 
@@ -20,15 +19,15 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         tree=(SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree));
         tree->source=curr;
 
-        if(currSymbol==PLAYER_A)
+        if(currSymbol==TopPlayer)
         {
-            currPlayer=PLAYER_A;
-            otherPlayer=PLAYER_B;
+            currPlayer=TOP_PLAYER;
+            otherPlayer=BOTTOM_PLAYER;
         }
-        if(currSymbol==PLAYER_B)
+        if(currSymbol==BOTTOM_PLAYER)
         {
-            currPlayer=PLAYER_B;
-            otherPlayer=PLAYER_A;
+            currPlayer=TOP_PLAYER;
+            otherPlayer=BOTTOM_PLAYER;
         }
         //Setting the player tool square
         curr=createTreeNode();
@@ -38,7 +37,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         curr->total_captures_so_far=0;
 
         //Setting the tree move of the player
-        if(currSymbol == PLAYER_A && !checkIfReachToEndOfBoard(row,col))
+        if(currSymbol == TOP_PLAYER && !checkIfReachToEndOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesForPlayer(board,row+1,col+1,currPlayer,otherPlayer);
@@ -46,7 +45,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
             curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesForPlayer(board,row+1,col-1,currPlayer,otherPlayer);
             //check the left side
         }
-        else if((currSymbol == PLAYER_B && !checkIfReachToTopOfBoard(row,col))
+        else if((currSymbol == BOTTOM_PLAYER && !checkIfReachToTopOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesForPlayer(board,row-1,col+1,currPlayer,otherPlayer);
@@ -90,7 +89,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, char row, char 
             *(res->pos).row=row;
             res->total_captures_so_far=0;
         }
-        if(currPlayer==PLAYER_A)
+        if(currPlayer==TOP_PLAYER)
         {
             if (canMoveToRight)
                 res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesForPlayer(board, row + 1, col + 1, currPlayer), otherPlayer;
@@ -99,7 +98,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, char row, char 
             else if (currSymbol != SYMBOL)
                 res=NULL;
         }
-        else if(currPlayer==PLAYER_B)
+        else if(currPlayer==BOTTOM_PLAYER)
         {
             if (canMoveToRight)
                 res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesForPlayer(board, row - 1, col + 1, currPlayer, otherPlayer);
@@ -116,11 +115,11 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, char row, char 
 BOOL checkIfPlayerReachedToTheEnd(Player currPlayer, int row, int col)
 {
     BOOL reachedToTheEnd=FALSE;
-    else if(currPlayer==PLAYER_A)
+    else if(currPlayer==TOP_PLAYER)
     {
         reachedToTheEnd=checkIfReachToEndOfBoard(row,col);
     }
-    else if(currPlayer==PLAYER_B)
+    else if(currPlayer==BOTTOM_PLAYER)
     {
         reachedToTheEnd=checkIfReachToTopOfBoard(row,col);
     }
@@ -148,12 +147,12 @@ BOOL checkMoveOfPlayer(Board board,int row,int col,char currPlayer,char otherPla
 
 
     //Check if the player tool can move left or right to the next square
-    if(currPlayer==PLAYER_A)
+    if(currPlayer==TOP_PLAYER)
     {
         canMoveRight=canMoveToNextSquare(board,row+1,col+1,currPlayer,otherPlayer,currSquareSymbol);
         canMoveLeft=canMoveToNextSquare(board,row-1,col-1,currPlayer,otherPlayer,currSquareSymbol);
     }
-    else if(currPlayer==PLAYER_B)
+    else if(currPlayer==BOTTOM_PLAYER)
     {
         canMoveRight=canMoveToNextSquare(board,row-1,col+1,currPlayer,otherPlayer,currSquareSymbol);
         canMoveLeft=canMoveToNextSquare(board,row-1,col-1,currPlayer,otherPlayer,currSquareSymbol);

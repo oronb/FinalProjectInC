@@ -1,4 +1,3 @@
-#include <General.h>
 #include <printBoard.h>
 
 void printBoard(Board board)

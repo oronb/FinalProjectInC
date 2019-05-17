@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <General.h>
 #include <createBoard.h>
 #include <printBoard.h>
+#include <General.h>
 
 //Define Functions
 
@@ -19,6 +19,6 @@ void PlayGame(Board board, Player starting_player); //7*/
 void main()
 {
     Board board;
-    createBoard(board,PLAYER_A,PLAYER_B);
+    createBoard(board);
     printBoard(board);
 }
