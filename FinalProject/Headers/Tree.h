@@ -1,3 +1,6 @@
 #pragma once
+#include <General.h>
 
-SingleSourceMovesTreeNode* createNewTreeNode(Board board, char row, char col, unsigned short total_captures_so_far);
+void printTree(SingleSourceMovesTree tree);
+void printTreeRec(SingleSourceMovesTreeNode* curr);
+SingleSourceMovesTreeNode* createNewTreeNode(Board board, char row, char col);

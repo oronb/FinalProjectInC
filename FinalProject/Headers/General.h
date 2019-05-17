@@ -9,20 +9,23 @@ typedef struct _checkersPos
 
 typedef unsigned char Board[BOARD_SIZE][BOARD_SIZE];
 typedef unsigned char Player;
+typedef int BOOL;
 
-#define SYMBOL ' ';
+#define FALSE 0
+#define TRUE 1
+#define SYMBOL ' '
 #define TOP_PLAYER 'B'
 #define BOTTOM_PLAYER 'T'
-#define RIGHT_MOVE_INDEX 1;
-#define LEFT_MOVE_INDEX 0;
-#define NEXT_MOVE_SIZE 2;
+#define RIGHT_MOVE_INDEX 1
+#define LEFT_MOVE_INDEX 0
+#define NEXT_MOVE_SIZE 2
 
 //1
 typedef struct _SingleSourceMovesTreeNode{
-    Board  board;
+    Board board;
     checkersPos *pos;
     unsigned short total_captures_so_far;
-    struct _SingleSourceMovesReeNode  *next_move[2];
+    struct _SingleSourceMovesTreeNode  *next_move[2];
 } SingleSourceMovesTreeNode;
 
 typedef struct _SingleSourceMovesTree {
