@@ -37,7 +37,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         curr->total_captures_so_far=0;
 
         //Setting the tree move of the player
-        if(currSymbol == TOP_PLAYER && !checkIfReachToEndOfBoard(row,col))
+        if(currSymbol == TOP_PLAYER && checkIfReachToEndOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col+1,currPlayer,otherPlayer);
@@ -45,7 +45,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
             curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col-1,currPlayer,otherPlayer);
             //check the left side
         }
-        else if(currSymbol == BOTTOM_PLAYER && !checkIfReachToTopOfBoard(row,col))
+        else if(currSymbol == BOTTOM_PLAYER && checkIfReachToTopOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col+1,currPlayer,otherPlayer);
@@ -136,7 +136,7 @@ BOOL checkIfReachToTopOfBoard(int row,int col)
 //Check if the player tool reached to the end of the board
 BOOL checkIfReachToEndOfBoard(int row,int col)
 {
-    return(row - 1 <= 0 || col -1 < 0 || col + 1 >= BOARD_SIZE);
+    return(row - 1 < 0 || col -1 < 0 || col + 1 >= BOARD_SIZE);
 }
 
 //Check if the player can move
