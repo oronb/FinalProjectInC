@@ -42,7 +42,7 @@ void printTreeRec(SingleSourceMovesTreeNode* curr)
         printf("The board is:\n");
         printBoard(curr->board);
         printf("The checkers is:\n");
-        printf("The row is:%c\n The column is: %c\n",curr->pos->row,curr->pos->col);
+        printf("The row is:%d\nThe column is: %d\n",curr->pos->row,curr->pos->col);
         printf("Total captures so far: %d\n", curr->total_captures_so_far);
         printf("\n\n");
         printTreeRec(curr->next_move[RIGHT_MOVE_INDEX]);

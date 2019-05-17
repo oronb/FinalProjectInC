@@ -8,10 +8,10 @@ void TestingFindSingleSourceMoves(Board board)
 {
     SingleSourceMovesTree* tr;
     checkersPos checkersPos1;
-    checkersPos1.row='0';
-    checkersPos1.col='1';
+    checkersPos1.row='2';
+    checkersPos1.col='3';
     printf("Board is initialized\n");
-    printf("Checking What is the source moved of top player in row 0 column 1\n");
+    printf("Checking What is the source moved of top player in row 2 column 3\n");
     tr=FindSingleSourceMoves( board, &checkersPos1);
     printTree(*tr);
 }
