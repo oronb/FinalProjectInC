@@ -22,6 +22,6 @@ void main()
 {
     Board board;
     createBoard(board);
-    //printBoard(board);
+    printBoard(board);
     TestingFindSingleSourceMoves(board);
 }

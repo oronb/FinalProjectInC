@@ -31,13 +31,13 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         }
         //Setting the player tool square
         curr=createNewTreeNode(board,row,col);
-        copyBoard(board,curr->board);
+        //copyBoard(board,curr->board);
         curr->pos->col=col;
         curr->pos->row=row;
         curr->total_captures_so_far=0;
 
         //Setting the tree move of the player
-        if(currSymbol == TOP_PLAYER && checkIfReachToEndOfBoard(row,col))
+        if(currSymbol == TOP_PLAYER && !checkIfReachToEndOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col+1,currPlayer,otherPlayer);
@@ -45,7 +45,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
             curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col-1,currPlayer,otherPlayer);
             //check the left side
         }
-        else if(currSymbol == BOTTOM_PLAYER && checkIfReachToTopOfBoard(row,col))
+        else if(currSymbol == BOTTOM_PLAYER && !checkIfReachToTopOfBoard(row,col))
         {
             //check the right side
             curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col+1,currPlayer,otherPlayer);
@@ -85,7 +85,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, int row, int co
         if(canMoveToLeft || canMoveToRight || currSymbol == SYMBOL)
         {
             res=createNewTreeNode(board, row, col);
-            copyBoard(board,res->board);
+            //copyBoard(board,res->board);
             res->pos->col=col;
             res->pos->row=row;
             res->total_captures_so_far=0;
@@ -93,19 +93,19 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, int row, int co
         if(currPlayer==TOP_PLAYER)
         {
             if (canMoveToRight)
-                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col + 1, currPlayer, otherPlayer);
-            else if (canMoveToLeft)
-                res->next_move[RIGHT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col - 1, currPlayer, otherPlayer);
-            else if (currSymbol != SYMBOL)
+                res->next_move[RIGHT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col + 1, currPlayer, otherPlayer);
+            if (canMoveToLeft)
+                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col - 1, currPlayer, otherPlayer);
+            if (!canMoveToRight && !canMoveToLeft && currSymbol != SYMBOL)
                 res=NULL;
         }
         else if(currPlayer==BOTTOM_PLAYER)
         {
             if (canMoveToRight)
-                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row - 1, col + 1, currPlayer, otherPlayer);
+                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col + 1, currPlayer, otherPlayer);
             if (canMoveToLeft)
-                res->next_move[RIGHT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row - 1, col - 1, currPlayer, otherPlayer);
-            else if (currSymbol != SYMBOL)
+                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row - 1, col - 1, currPlayer, otherPlayer);
+            if (!canMoveToRight && !canMoveToLeft && currSymbol != SYMBOL)
                 res=NULL;
         }
     }
@@ -148,7 +148,7 @@ void checkMoveOfPlayer(Board board,int row,int col,char currPlayer,char otherPla
     if(currPlayer==TOP_PLAYER)
     {
         *canMoveRight=canMoveToNextSquare(board,row+1,col+1,currPlayer,otherPlayer,currSquareSymbol);
-        *canMoveLeft=canMoveToNextSquare(board,row-1,col-1,currPlayer,otherPlayer,currSquareSymbol);
+        *canMoveLeft=canMoveToNextSquare(board,row+1,col-1,currPlayer,otherPlayer,currSquareSymbol);
     }
     else if(currPlayer==BOTTOM_PLAYER)
     {
