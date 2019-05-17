@@ -6,7 +6,7 @@
 SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
 {
     //Declare variables
-    SingleSourceMovesTree tree;
+    SingleSourceMovesTree* tree;
     SingleSourceMovesTreeNode* curr;
     char row=src->row;
     char col=src->col;
@@ -17,6 +17,9 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
     //Check if there is a player tool in the current square
     if(currSymbol != NULL)
     {
+        tree=(SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree));
+        tree->source=curr;
+
         if(currSymbol==PLAYER_A)
         {
             currPlayer=PLAYER_A;

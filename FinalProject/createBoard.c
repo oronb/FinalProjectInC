@@ -3,7 +3,6 @@
 
 void createBoard(Board board,Player playerA,Player playerB)
 {
-
     int row,col, sizeHalfBoard=(BOARD_SIZE/2)-1;
 
     buildThirdBoard(board,0,sizeHalfBoard,playerA,SYMBOL);

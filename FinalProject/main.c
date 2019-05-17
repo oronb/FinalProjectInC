@@ -7,7 +7,6 @@
 #include <createBoard.h>
 #include <printBoard.h>
 
-
 //Define Functions
 
 /*SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree); //2
