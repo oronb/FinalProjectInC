@@ -26,8 +26,8 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         }
         if(currSymbol==BOTTOM_PLAYER)
         {
-            currPlayer=TOP_PLAYER;
-            otherPlayer=BOTTOM_PLAYER;
+            currPlayer=BOTTOM_PLAYER;
+            otherPlayer=TOP_PLAYER;
         }
         //Setting the player tool square
         curr=createNewTreeNode(board,row,col);
@@ -37,21 +37,23 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         curr->total_captures_so_far=0;
 
         //Setting the tree move of the player
-        if(currSymbol == TOP_PLAYER && !checkIfReachToEndOfBoard(row,col))
+        if(currSymbol == TOP_PLAYER)
         {
-            //check the right side
-            curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col+1,currPlayer,otherPlayer);
-            //check left side
-            curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col-1,currPlayer,otherPlayer);
-            //check the left side
+            //Check if reached to the right end of the board
+            if(!checkIfReachToRightEndOfBoard(row,col))
+                curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col+1,currPlayer,otherPlayer);
+            //Check if reached to the left end of the board
+            if(!checkIfReachToLeftEndOfBoard(row,col))
+                curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row+1,col-1,currPlayer,otherPlayer);
         }
-        else if(currSymbol == BOTTOM_PLAYER && !checkIfReachToTopOfBoard(row,col))
+        else if(currSymbol == BOTTOM_PLAYER)
         {
-            //check the right side
-            curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col+1,currPlayer,otherPlayer);
-            //check left side
-            curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col-1,currPlayer,otherPlayer);
-            //check the left side
+            //Check if reached to the right top of the board
+            if(!checkIfReachToRightEndOfBoard(row,col))
+                curr->next_move[RIGHT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col+1,currPlayer,otherPlayer);
+            //Check if reached to the left top of the board
+            if(!checkIfReachToLeftEndOfBoard(row,col))
+                curr->next_move[LEFT_MOVE_INDEX]=FindSingleSourceMovesRec(board,row-1,col-1,currPlayer,otherPlayer);
         }
         tree->source=curr;
         return tree;
@@ -74,9 +76,12 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, int row, int co
     }
     else if(checkIfPlayerReachedToTheEnd(currPlayer,row,col))
     {
-        if(currSymbol==currPlayer)
-            res=NULL;
-        else if(currSymbol==SYMBOL)
+        if(currSymbol==SYMBOL)
+            res=createNewTreeNode(board,row,col);
+    }
+    else if(checkIfReachToRightEndOfBoard(row,col) && checkIfReachToLeftEndOfBoard(row,col))
+    {
+        if(currSymbol==SYMBOL)
             res=createNewTreeNode(board,row,col);
     }
     else
@@ -130,13 +135,25 @@ BOOL checkIfPlayerReachedToTheEnd(Player currPlayer, int row, int col)
 //Check if the player tool reached to the top of the board
 BOOL checkIfReachToTopOfBoard(int row,int col)
 {
-    return(row + 1 >= BOARD_SIZE || col -1 < 0 || col + 1 >= BOARD_SIZE);
+    return(row - 1 < 0 || col - 1 < 0 || col + 1 >= BOARD_SIZE);
 }
 
 //Check if the player tool reached to the end of the board
 BOOL checkIfReachToEndOfBoard(int row,int col)
 {
-    return(row - 1 < 0 || col -1 < 0 || col + 1 >= BOARD_SIZE);
+    return(row + 1 >= BOARD_SIZE || col - 1 < 0 || col + 1 >= BOARD_SIZE);
+}
+
+//Check if reached to the right end of the board
+BOOL checkIfReachToRightEndOfBoard(int row,int col)
+{
+    return(row + 1 >= BOARD_SIZE|| col + 1 >= BOARD_SIZE || row - 1 < 0);
+}
+
+//Check if reached to the left end of the board
+BOOL checkIfReachToLeftEndOfBoard(int row,int col)
+{
+    return(row + 1 >= BOARD_SIZE|| col - 1 < BOARD_SIZE || row - 1 < 0);
 }
 
 //Check if the player can move
@@ -147,15 +164,30 @@ void checkMoveOfPlayer(Board board,int row,int col,char currPlayer,char otherPla
     //Check if the player tool can move left or right to the next square
     if(currPlayer==TOP_PLAYER)
     {
-        *canMoveRight=canMoveToNextSquare(board,row+1,col+1,currPlayer,otherPlayer,currSquareSymbol);
-        *canMoveLeft=canMoveToNextSquare(board,row+1,col-1,currPlayer,otherPlayer,currSquareSymbol);
+        //check if can move Right
+        if(!checkIfReachToRightEndOfBoard(row,col))
+            *canMoveRight=canMoveToNextSquare(board,row+1,col+1,currPlayer,otherPlayer,currSquareSymbol);
+        else
+            *canMoveRight=FALSE;
+        //Check if can move Left
+        if(!checkIfReachToLeftEndOfBoard(row,col))
+            *canMoveLeft=canMoveToNextSquare(board,row+1,col-1,currPlayer,otherPlayer,currSquareSymbol);
+        else
+            *canMoveLeft=FALSE;
     }
     else if(currPlayer==BOTTOM_PLAYER)
     {
-        *canMoveRight=canMoveToNextSquare(board,row-1,col+1,currPlayer,otherPlayer,currSquareSymbol);
-        *canMoveLeft=canMoveToNextSquare(board,row-1,col-1,currPlayer,otherPlayer,currSquareSymbol);
+        if(!checkIfReachToRightEndOfBoard(row,col))
+            *canMoveRight=canMoveToNextSquare(board,row-1,col+1,currPlayer,otherPlayer,currSquareSymbol);
+        else
+            *canMoveRight=FALSE;
+        if(!checkIfReachToLeftEndOfBoard(row,col))
+            *canMoveLeft=canMoveToNextSquare(board,row-1,col-1,currPlayer,otherPlayer,currSquareSymbol);
+        else
+            *canMoveLeft=FALSE;
     }
 }
+
 //check if the player tool can move to the next square
 BOOL canMoveToNextSquare(Board board, int nextRow,int nextCol,Player currPlayer,Player otherPlayer,unsigned char currSquareSymbol)
 {

@@ -13,7 +13,8 @@ SingleSourceMovesTreeNode* createNewTreeNode(Board board, char row, char col)
     //create pos
 
     //Setting the tree node
-    copyBoard(board,curr->board);
+    //In Marking just for debugging!
+    // copyBoard(board,curr->board);
     curr->pos=(checkersPos*)malloc(sizeof(checkersPos));
     curr->pos->col=col;
     curr->pos->row=row;
@@ -40,7 +41,7 @@ void printTreeRec(SingleSourceMovesTreeNode* curr)
     {
         printTreeRec(curr->next_move[LEFT_MOVE_INDEX]);
         printf("The board is:\n");
-        printBoard(curr->board);
+        //printBoard(curr->board);
         printf("The checkers is:\n");
         printf("The row is:%d\nThe column is: %d\n",curr->pos->row,curr->pos->col);
         printf("Total captures so far: %d\n", curr->total_captures_so_far);
