@@ -79,11 +79,6 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, int row, int co
         if(currSymbol==SYMBOL)
             res=createNewTreeNode(board,row,col);
     }
-    else if(checkIfReachToRightEndOfBoard(row,col) && checkIfReachToLeftEndOfBoard(row,col))
-    {
-        if(currSymbol==SYMBOL)
-            res=createNewTreeNode(board,row,col);
-    }
     else
     {
         checkMoveOfPlayer(board,row,col,currPlayer,otherPlayer,currSymbol,&canMoveToLeft,&canMoveToRight);
@@ -107,7 +102,7 @@ SingleSourceMovesTreeNode* FindSingleSourceMovesRec(Board board, int row, int co
         else if(currPlayer==BOTTOM_PLAYER)
         {
             if (canMoveToRight)
-                res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row + 1, col + 1, currPlayer, otherPlayer);
+                res->next_move[RIGHT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row - 1, col + 1, currPlayer, otherPlayer);
             if (canMoveToLeft)
                 res->next_move[LEFT_MOVE_INDEX] = FindSingleSourceMovesRec(board, row - 1, col - 1, currPlayer, otherPlayer);
             if (!canMoveToRight && !canMoveToLeft && currSymbol != SYMBOL)
@@ -147,13 +142,13 @@ BOOL checkIfReachToEndOfBoard(int row,int col)
 //Check if reached to the right end of the board
 BOOL checkIfReachToRightEndOfBoard(int row,int col)
 {
-    return(row + 1 >= BOARD_SIZE|| col + 1 >= BOARD_SIZE || row - 1 < 0);
+    return(col + 1 >= BOARD_SIZE);
 }
 
 //Check if reached to the left end of the board
 BOOL checkIfReachToLeftEndOfBoard(int row,int col)
 {
-    return(row + 1 >= BOARD_SIZE|| col - 1 < BOARD_SIZE || row - 1 < 0);
+    return(col - 1 < 0);
 }
 
 //Check if the player can move
