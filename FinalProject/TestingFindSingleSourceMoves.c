@@ -6,6 +6,14 @@
 
 void TestingFindSingleSourceMoves(Board board)
 {
+    //Testing top player
+    /*board[6][3]=SYMBOL;
+    board[5][6]=SYMBOL;
+    board[3][4]=BOTTOM_PLAYER;
+     */
+    //Testing bottom player
+    board[4][5]=TOP_PLAYER;
+    board[1][4]=SYMBOL;
     SingleSourceMovesTree* tr;
     checkersPos checkersPos1;
     printf("Enter row and column\n");
