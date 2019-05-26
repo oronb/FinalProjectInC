@@ -22,7 +22,16 @@ typedef struct _SingleSourceMovesListCell {
 typedef struct _SingleSourceMovesList {
     SingleSourceMovesListCell *head;
     SingleSourceMovesListCell *tail;
-} SingleSourceMovesList;*/
+} SingleSourceMovesList;
+ typedef struct _multipleSourceMovesListCell {
+    SingleSourceMovesList *single_source_moves_list;
+    struct _multipleSourceMovesListCell *next;
+} MultipleSourceMovesListCell;
+
+typedef struct _multipleSourceMovesList {
+    MultipleSourceMovesListCell *head;
+    MultipleSourceMovesListCell *tai;
+} MultipleSourceMovesList;*/
 
 void makeEmptyList(SingleSourceMovesList* lst)
 {
@@ -67,4 +76,53 @@ void insertNodeToEndList(SingleSourceMovesList* lst, SingleSourceMovesListCell *
 int isEmptyList(const SingleSourceMovesList* lst)
 {
     return lst->head == NULL;
+}
+
+
+
+
+//Functions for list of lists
+
+
+void insertDataToEndListOfLists(MultipleSourceMovesList* lstOfLists, SingleSourceMovesList* lst)
+{
+    MultipleSourceMovesListCell* newTail;
+
+    newTail = createNewListOfListsNode(lst, NULL);
+    insertNodeToEndListOfLists(lstOfLists, newTail);
+}
+
+
+MultipleSourceMovesListCell* createNewListOfListsNode(SingleSourceMovesList* lst, MultipleSourceMovesListCell* next)
+{
+    MultipleSourceMovesListCell* res;
+
+    res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
+    //checkAlloc(res);
+    res->single_source_moves_list=lst;
+
+    return res;
+}
+
+void insertNodeToEndListOfLists(MultipleSourceMovesList* lst, MultipleSourceMovesListCell * newTail)
+{
+    if (isEmptyListOfLists(lst))
+    {
+        lst->head = lst->tail = newTail;
+    }
+    else
+    {
+        lst->tail->next = newTail;
+        lst->tail = newTail;
+    }
+}
+
+int isEmptyListOfLists(const MultipleSourceMovesList* lst)
+{
+    return lst->head == NULL;
+}
+
+void makeEmptyListOfLists(MultipleSourceMovesList* lst)
+{
+    (*lst).head = (*lst).tail = NULL;
 }

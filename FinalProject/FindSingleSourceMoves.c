@@ -8,8 +8,10 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
     //Declare variables
     SingleSourceMovesTree* tree;
     SingleSourceMovesTreeNode* curr;
-    int row=src->row - '0';
-    int col=src->col - '0';
+    int row;
+    int col;
+    row=src->row - '0';
+    col=src->col - '0';
     unsigned char currSymbol=board[row][col];
     Player currPlayer;
     Player otherPlayer;

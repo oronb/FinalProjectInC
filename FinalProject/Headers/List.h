@@ -32,3 +32,8 @@ void insertDataToEndList(SingleSourceMovesList* lst, checkersPos position, unsig
 SingleSourceMovesListCell* createNewListNode(checkersPos position, unsigned short captures, SingleSourceMovesListCell* next);
 void insertNodeToEndList(SingleSourceMovesList* lst, SingleSourceMovesListCell * newTail);
 int isEmptyList(const SingleSourceMovesList* lst);
+void insertDataToEndListOfLists(MultipleSourceMovesList* lstOfLists, SingleSourceMovesList* lst);
+MultipleSourceMovesListCell* createNewListOfListsNode(SingleSourceMovesList* lst, MultipleSourceMovesListCell* next);
+void insertNodeToEndListOfLists(MultipleSourceMovesList* lst, MultipleSourceMovesListCell * newTail);
+int isEmptyListOfLists(const MultipleSourceMovesList* lst);
+void makeEmptyListOfLists(MultipleSourceMovesList* lst);
