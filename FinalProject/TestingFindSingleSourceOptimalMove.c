@@ -22,7 +22,7 @@ void TestingFindSingleSourceOptimalMove(Board board)
         board[5][4]=SYMBOL;
         SingleSourceMovesTree* tr;
         SingleSourceMovesList* lst;
-        lst = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
+        //lst = (SingleSourceMovesList*)malloc(sizeof(SingleSourceMovesList));
         checkersPos checkersPos1;
         printf("Enter row and column\n");
         scanf("%c %c",&checkersPos1.row,&checkersPos1.col);

@@ -7,8 +7,8 @@ include_directories(Headers)
 
 add_executable(FinalProject
         Headers/createBoard.h
-      #  Headers/FindAllPossiblePlayerMoves.h
-      #  Headers/FindSingleSourceMoves.h
+        Headers/FindAllPossiblePlayerMoves.h
+        Headers/FindSingleSourceMoves.h
        Headers/FindSingleSourceOptimalMove.h
         Headers/General.h
         Headers/Tree.h
@@ -20,12 +20,14 @@ add_executable(FinalProject
         Headers/printBoard.h
         Headers/FindSingleSourceMoves.h
         Headers/TestingFindSingleSourceOptimalMove.h
+       Headers/TestingFindAllPossiblePlayerMoves.h
+        TestingFindAllPossiblePlayerMoves.c
         TestingFindSingleSourceMoves.c
         TestingFindSingleSourceOptimalMove.c
         List.c
         Tree.c
         createBoard.c
-      #  FindAllPossiblePlayerMoves.c
+        FindAllPossiblePlayerMoves.c
        # FindSingleSourceMoves.c
         FindSingleSourceOptimalMove.c
       #  LoadBoard.c

@@ -1,8 +1,19 @@
-//
-// Created by Oron Bortman on 2019-05-13.
-//
+#pragma once
 
-#ifndef FINALPROJECT_MULTIPLESOURCEMOVESLIST_H
-#define FINALPROJECT_MULTIPLESOURCEMOVESLIST_H
+#include <General.h>
+#include <List.h>
+#include <Tree.h>
+#include <FindSingleSourceMoves.h>
+#include <FindSingleSourceOptimalMove.h>
 
-#endif //FINALPROJECT_MULTIPLESOURCEMOVESLIST_H
+MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player);
+
+/*typedef struct _multipleSourceMovesListCell {
+    SingleSourceMovesList *single_source_moves_list;
+    struct _multipleSourceMovesListCell *next;
+} MultipleSourceMovesListCell;
+
+typedef struct _multipleSourceMovesList {
+    MultipleSourceMovesListCell *head;
+    MultipleSourceMovesListCell *tai;
+} MultipleSourceMovesList;*/

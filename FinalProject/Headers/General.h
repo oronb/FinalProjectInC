@@ -14,8 +14,8 @@ typedef int BOOL;
 #define FALSE 0
 #define TRUE 1
 #define SYMBOL ' '
-#define TOP_PLAYER 'B'
-#define BOTTOM_PLAYER 'T'
+#define TOP_PLAYER 'T'
+#define BOTTOM_PLAYER 'B'
 #define RIGHT_MOVE_INDEX 1
 #define LEFT_MOVE_INDEX 0
 #define NEXT_MOVE_SIZE 2
@@ -44,12 +44,12 @@ typedef struct _SingleSourceMovesList {
 } SingleSourceMovesList;
 
 //3
-/*typedef struct _multipleSourceMovesListCell {
+typedef struct _multipleSourceMovesListCell {
     SingleSourceMovesList *single_source_moves_list;
     struct _multipleSourceMovesListCell *next;
 } MultipleSourceMovesListCell;
 
 typedef struct _multipleSourceMovesList {
     MultipleSourceMovesListCell *head;
-    MultipleSourceMovesListCell *tai;
-} MultipleSourceMovesList;*/
+    MultipleSourceMovesListCell *tail;
+} MultipleSourceMovesList;
