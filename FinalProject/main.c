@@ -8,6 +8,7 @@
 #include <General.h>
 #include <TestingFindAllPossiblePlayerMoves.h>
 #include <Tree.h>
+#include <StoreBoard.h>
 
 //Define Functions
 
@@ -22,6 +23,7 @@ void main()
 {
     Board board;
     createBoard(board);
+    StoreBoard(board);
     //printBoard(board);
-    TestingFindAllPossiblePlayerMoves(board);
+    //TestingFindAllPossiblePlayerMoves(board);
 }
