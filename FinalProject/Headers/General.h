@@ -32,18 +32,17 @@ typedef struct _SingleSourceMovesTree {
     SingleSourceMovesTreeNode *source;
 } SingleSourceMovesTree;
 
-//2
-/*typedef struct _SingleSourceMovesListCell {
+typedef struct _SingleSourceMovesListCell {
     checkersPos *position;
     unsigned short captures;
-    struct _SingleSourceMovesListCell;
+    struct _SingleSourceMovesListCell *next;
 } SingleSourceMovesListCell;
 
 typedef struct _SingleSourceMovesList {
     SingleSourceMovesListCell *head;
     SingleSourceMovesListCell *tail;
 } SingleSourceMovesList;
-*/
+
 //3
 /*typedef struct _multipleSourceMovesListCell {
     SingleSourceMovesList *single_source_moves_list;
