@@ -7,6 +7,7 @@
 #include <printBoard.h>
 #include <General.h>
 #include <TestingFindSingleSourceMoves.h>
+#include <TestingFindSingleSourceOptimalMove.h>
 #include <Tree.h>
 
 //Define Functions
@@ -23,5 +24,5 @@ void main()
     Board board;
     createBoard(board);
     //printBoard(board);
-    TestingFindSingleSourceMoves(board);
+    TestingFindSingleSourceOptimalMove(board);
 }

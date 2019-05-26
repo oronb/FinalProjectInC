@@ -1,8 +1,6 @@
-//
-// Created by Oron Bortman on 2019-05-13.
-//
+#pragma once
+#include <General.h>
 
-#ifndef FINALPROJECT_FINDSINGLESOURCEOPTIMALMOVE_H
-#define FINALPROJECT_FINDSINGLESOURCEOPTIMALMOVE_H
-
-#endif //FINALPROJECT_FINDSINGLESOURCEOPTIMALMOVE_H
+SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree);
+void cleanBranches(SingleSourceMovesTreeNode* curr, int* length);
+void buildList(SingleSourceMovesList* lst,SingleSourceMovesTreeNode* currTreeNode);

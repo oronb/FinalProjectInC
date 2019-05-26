@@ -51,3 +51,19 @@ void printTreeRec(SingleSourceMovesTreeNode* curr)
     }
 
 }
+
+void freeTree(SingleSourceMovesTree tr)
+{
+    freeTreeRec(tr.source);
+}
+
+//FreeTreeRec() function recursively free all tree nodes.
+void freeTreeRec(SingleSourceMovesTreeNode *root)
+{
+    if (root != NULL)
+    {
+        freeTreeRec(root->next_move[RIGHT_MOVE_INDEX]);
+        freeTreeRec(root->next_move[LEFT_MOVE_INDEX]);
+        free(root);
+    }
+}
