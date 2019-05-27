@@ -25,13 +25,22 @@ void main()
 
     Board board;
     createBoard(board);
-    board[2][3]=BOTTOM_PLAYER;
+    /*board[2][3]=BOTTOM_PLAYER;
     board[2][5]=BOTTOM_PLAYER;
     board[4][5]=BOTTOM_PLAYER;
-    board[5][4]=SYMBOL;
+    board[5][4]=SYMBOL;*/
+
+    board[0][1]=SYMBOL;
+    board[1][4]=SYMBOL;
+    board[2][3]=SYMBOL;
+    board[3][4]=TOP_PLAYER;
+    board[4][1]=TOP_PLAYER;
+    board[4][3]=TOP_PLAYER;
+    board[5][4]=TOP_PLAYER;
+
     //StoreBoard(board);
     //printBoard(board);
-    Turn(board,TOP_PLAYER);
+    Turn(board,BOTTOM_PLAYER);
     printBoard(board);
 
     // printBoard(board);
