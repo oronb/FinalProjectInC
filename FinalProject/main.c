@@ -9,6 +9,7 @@
 #include <TestingFindAllPossiblePlayerMoves.h>
 #include <Tree.h>
 #include <StoreBoard.h>
+#include <Turn.h>
 
 //Define Functions
 
@@ -21,9 +22,17 @@ void PlayGame(Board board, Player starting_player); //7*/
 
 void main()
 {
+
     Board board;
     createBoard(board);
+    board[2][3]=BOTTOM_PLAYER;
+    board[2][5]=BOTTOM_PLAYER;
+    board[4][5]=BOTTOM_PLAYER;
+    board[5][4]=SYMBOL;
     //StoreBoard(board);
     //printBoard(board);
-    TestingFindAllPossiblePlayerMoves(board);
+    Turn(board,TOP_PLAYER);
+    printBoard(board);
+
+    // printBoard(board);
 }

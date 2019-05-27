@@ -9,11 +9,9 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
     //Declare variables
     SingleSourceMovesTree* tree;
     SingleSourceMovesTreeNode* curr;
-    int row;
-    int col;
-    row=(src->row - '0');
-    col=(src->col - '0');
-    unsigned char currSymbol=board[row][col];
+    char posRow=src->row;
+    char posCol=src->col;
+    unsigned char currSymbol=board[posRow - '0'][posCol - '0'];
     Player currPlayer;
     Player otherPlayer;
     unsigned short totalCapturesSoFar=0;
@@ -35,11 +33,11 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
         }
         if(currPlayer==TOP_PLAYER)
         {
-            curr=checkMoveOfTopPlayerRec(board,row,col,totalCapturesSoFar);
+            curr=checkMoveOfTopPlayerRec(board,posRow,posCol,totalCapturesSoFar);
         }
         else if(currPlayer==BOTTOM_PLAYER)
         {
-            curr=checkMoveOfBottomPlayerRec(board,row,col,totalCapturesSoFar);
+            curr=checkMoveOfBottomPlayerRec(board,posRow,posCol,totalCapturesSoFar);
         }
         tree->source=curr;
         return tree;
@@ -73,13 +71,15 @@ BOOL checkIfReachToLeftEndOfBoard(int col)
 }
 
 //Check if the player can move
-SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, unsigned short totalCapturesSoFar)
+SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,char posRow,char posCol, unsigned short totalCapturesSoFar)
 {
+    int row=posRow - '0';
+    int col=posCol - '0';
     SingleSourceMovesTreeNode* curr=NULL;
     //Check if the player tool can move left or right to the next square
         if(board[row][col] == TOP_PLAYER || board[row][col] == SYMBOL)
         {
-            curr=createNewTreeNode(board,row,col);
+            curr=createNewTreeNode(board,posRow,posCol);
             curr->total_captures_so_far=totalCapturesSoFar;
         }
         if(board[row][col] == TOP_PLAYER)
@@ -89,7 +89,7 @@ SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, 
             {
                 if (board[row + 1][col + 1] == SYMBOL && totalCapturesSoFar == 0)
                 {
-                    curr->next_move[RIGHT_MOVE_INDEX] = createNewTreeNode(board, row + 1, col + 1);
+                    curr->next_move[RIGHT_MOVE_INDEX] = createNewTreeNode(board, posRow + 1, posCol + 1);
 
                 }
             }
@@ -98,7 +98,7 @@ SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, 
             {
                 if (board[row + 1][col - 1] == SYMBOL && totalCapturesSoFar == 0)
                 {
-                    curr->next_move[LEFT_MOVE_INDEX] = createNewTreeNode(board, row + 1, col - 1);
+                    curr->next_move[LEFT_MOVE_INDEX] = createNewTreeNode(board, posRow + 1, posCol - 1);
 
                 }
             }
@@ -114,7 +114,7 @@ SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, 
                     {
                         if (board[row + 2][col + 2] == SYMBOL)
                         {
-                            curr->next_move[RIGHT_MOVE_INDEX] = checkMoveOfTopPlayerRec(board, row + 2, col + 2, totalCapturesSoFar + 1);
+                            curr->next_move[RIGHT_MOVE_INDEX] = checkMoveOfTopPlayerRec(board, posRow + 2, posCol + 2, totalCapturesSoFar + 1);
                         }
                     }
                 }
@@ -128,7 +128,7 @@ SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, 
                     {
                         if (board[row + 2][col - 2] == SYMBOL)
                         {
-                            curr->next_move[LEFT_MOVE_INDEX] = checkMoveOfTopPlayerRec(board, row + 2, col - 2, totalCapturesSoFar+1);
+                            curr->next_move[LEFT_MOVE_INDEX] = checkMoveOfTopPlayerRec(board, posRow + 2, posCol - 2, totalCapturesSoFar+1);
                         }
                     }
                 }
@@ -138,13 +138,15 @@ SingleSourceMovesTreeNode* checkMoveOfTopPlayerRec(Board board,int row,int col, 
 }
 
 //Check if the player can move
-SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,int row,int col, unsigned short totalCapturesSoFar)
+SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,char posRow,char posCol, unsigned short totalCapturesSoFar)
 {
+    int row=posRow - '0';
+    int col=posCol - '0';
     SingleSourceMovesTreeNode* curr=NULL;
     //Check if the player tool can move left or right to the next square
     if(board[row][col] == BOTTOM_PLAYER || board[row][col] == SYMBOL)
     {
-        curr=createNewTreeNode(board,row,col);
+        curr=createNewTreeNode(board,posRow,posCol);
         curr->total_captures_so_far=totalCapturesSoFar;
     }
     if(board[row][col] == BOTTOM_PLAYER)
@@ -154,7 +156,7 @@ SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,int row,int co
         {
             if (board[row - 1][col + 1] == SYMBOL && totalCapturesSoFar == 0)
             {
-                curr->next_move[RIGHT_MOVE_INDEX] = createNewTreeNode(board, row - 1, col + 1);
+                curr->next_move[RIGHT_MOVE_INDEX] = createNewTreeNode(board, posRow - 1, posCol + 1);
 
             }
         }
@@ -163,7 +165,7 @@ SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,int row,int co
         {
             if (board[row - 1][col - 1] == SYMBOL && totalCapturesSoFar == 0)
             {
-                curr->next_move[LEFT_MOVE_INDEX] = createNewTreeNode(board, row - 1, col - 1);
+                curr->next_move[LEFT_MOVE_INDEX] = createNewTreeNode(board, posRow - 1, posCol - 1);
 
             }
         }
@@ -179,7 +181,7 @@ SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,int row,int co
                 {
                     if (board[row - 2][col + 2] == SYMBOL)
                     {
-                        curr->next_move[RIGHT_MOVE_INDEX] = checkMoveOfBottomPlayerRec(board, row - 2, col + 2, totalCapturesSoFar + 1);
+                        curr->next_move[RIGHT_MOVE_INDEX] = checkMoveOfBottomPlayerRec(board, posRow - 2, posCol + 2, totalCapturesSoFar + 1);
                     }
                 }
             }
@@ -193,7 +195,7 @@ SingleSourceMovesTreeNode* checkMoveOfBottomPlayerRec(Board board,int row,int co
                 {
                     if (board[row - 2][col - 2] == SYMBOL)
                     {
-                        curr->next_move[LEFT_MOVE_INDEX] = checkMoveOfBottomPlayerRec(board, row - 2, col - 2, totalCapturesSoFar+1);
+                        curr->next_move[LEFT_MOVE_INDEX] = checkMoveOfBottomPlayerRec(board, posRow - 2, posCol - 2, totalCapturesSoFar+1);
                     }
                 }
             }

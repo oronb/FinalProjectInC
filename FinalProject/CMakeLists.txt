@@ -15,7 +15,7 @@ add_executable(FinalProject
      #   Headers/LoadBoard.h
      #   Headers/PlayGame.h
         Headers/StoreBoard.h
-      #  Headers/Turn.h
+        Headers/Turn.h
         Headers/List.h
         Headers/printBoard.h
         Headers/FindSingleSourceMoves.h
@@ -34,7 +34,7 @@ add_executable(FinalProject
         main.c
       #  PlayGame.c
         StoreBoard.c
-       # Turn.c
+        Turn.c
         printBoard.c
         FindSingleSourceMoves.c
         )

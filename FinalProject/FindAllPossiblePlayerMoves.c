@@ -22,7 +22,8 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 {
     int r,c;
     char row='0',col='0';
-    checkersPos pos;
+    checkersPos* pos;
+    pos = (checkersPos*)malloc(sizeof(checkersPos));
     SingleSourceMovesTree* tree;
     SingleSourceMovesList* lst;
     MultipleSourceMovesList* listOfLists;
@@ -36,9 +37,9 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
             //Check if player exists in position
             if(board[r][c] == player)
             {
-                pos.row=row;
-                pos.col=col;
-                tree=FindSingleSourceMoves(board,&pos);
+                pos->row=row;
+                pos->col=col;
+                tree=FindSingleSourceMoves(board,pos);
                 if(tree != NULL)
                 {
                     lst=FindSingleSourceOptimalMove(tree);
