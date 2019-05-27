@@ -14,7 +14,7 @@ add_executable(FinalProject
         Headers/Tree.h
      #   Headers/LoadBoard.h
      #   Headers/PlayGame.h
-      #  Headers/StoreBoard.h
+        Headers/StoreBoard.h
       #  Headers/Turn.h
         Headers/List.h
         Headers/printBoard.h
@@ -33,7 +33,7 @@ add_executable(FinalProject
       #  LoadBoard.c
         main.c
       #  PlayGame.c
-      #  StoreBoard.c
+        StoreBoard.c
        # Turn.c
         printBoard.c
         FindSingleSourceMoves.c

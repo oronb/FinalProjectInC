@@ -21,28 +21,32 @@ typedef struct _multipleSourceMovesList {
 MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 {
     int r,c;
+    char row='0',col='0';
     checkersPos pos;
     SingleSourceMovesTree* tree;
     SingleSourceMovesList* lst;
-    MultipleSourceMovesList listOfLists;
+    MultipleSourceMovesList* listOfLists;
+    listOfLists = (MultipleSourceMovesList*)malloc(sizeof(MultipleSourceMovesList));
+    makeEmptyListOfLists(listOfLists);
 
-    for(r = 1; r < BOARD_SIZE; r++)
+    for(r = 1, row='1'; r < BOARD_SIZE; r++,row++)
     {
-        for(c = 0; c < BOARD_SIZE; c++)
+        for(c = 2,col='2'; c < BOARD_SIZE; c++,col++)
         {
             //Check if player exists in position
             if(board[r][c] == player)
             {
-                pos.row=r;
-                pos.col=c;
+                pos.row=row;
+                pos.col=col;
                 tree=FindSingleSourceMoves(board,&pos);
                 if(tree != NULL)
                 {
                     lst=FindSingleSourceOptimalMove(tree);
-                    insertDataToEndListOfLists(&listOfLists,lst);
+                    insertDataToEndListOfLists(listOfLists,lst);
                 }
             }
         }
     }
+    return listOfLists;
 
 }

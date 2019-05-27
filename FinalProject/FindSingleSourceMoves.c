@@ -2,6 +2,7 @@
 #include <Tree.h>
 #include <FindSingleSourceMoves.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
 {
@@ -10,8 +11,8 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
     SingleSourceMovesTreeNode* curr;
     int row;
     int col;
-    row=src->row - '0';
-    col=src->col - '0';
+    row=(src->row - '0');
+    col=(src->col - '0');
     unsigned char currSymbol=board[row][col];
     Player currPlayer;
     Player otherPlayer;
