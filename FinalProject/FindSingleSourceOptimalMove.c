@@ -39,13 +39,15 @@ void cleanBranches(SingleSourceMovesTreeNode* curr, int* length)
         if(lengthLeft >= lengthRight)
         {
             *length=lengthLeft;
-            freeTreeRec(curr->next_move[RIGHT_MOVE_INDEX]);
+            if(curr->next_move[RIGHT_MOVE_INDEX] != NULL)
+                freeTreeRec(curr->next_move[RIGHT_MOVE_INDEX]);
             curr->next_move[RIGHT_MOVE_INDEX]=NULL;
         }
         else
         {
             *length=lengthRight;
-            freeTreeRec(curr->next_move[LEFT_MOVE_INDEX]);
+            if(curr->next_move[LEFT_MOVE_INDEX] != NULL)
+                freeTreeRec(curr->next_move[LEFT_MOVE_INDEX]);
             curr->next_move[LEFT_MOVE_INDEX]=NULL;
         }
     }
