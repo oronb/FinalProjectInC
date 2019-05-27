@@ -23,7 +23,7 @@ void main()
 {
     Board board;
     createBoard(board);
-    StoreBoard(board);
+    //StoreBoard(board);
     //printBoard(board);
-    //TestingFindAllPossiblePlayerMoves(board);
+    TestingFindAllPossiblePlayerMoves(board);
 }
