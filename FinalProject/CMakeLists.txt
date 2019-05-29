@@ -13,7 +13,7 @@ add_executable(FinalProject
         Headers/General.h
         Headers/Tree.h
        Headers/LoadBoard.h
-     #   Headers/PlayGame.h
+        Headers/PlayGame.h
         Headers/StoreBoard.h
         Headers/Turn.h
         Headers/List.h
@@ -33,7 +33,7 @@ add_executable(FinalProject
         LoadBoard.c
         main.c
         File.c
-      #  PlayGame.c
+       PlayGame.c
         StoreBoard.c
         Turn.c
         printBoard.c

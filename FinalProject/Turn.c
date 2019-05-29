@@ -1,9 +1,11 @@
 
 #include <General.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <List.h>
 #include <Tree.h>
 #include <FindAllPossiblePlayerMoves.h>
+#include <printBoard.h>
 
 void Turn(Board board, Player player)
 {
@@ -63,5 +65,21 @@ void Turn(Board board, Player player)
             }
             currL=currL->next;
         }
+
+    firstCol=turnList.head->position->col+1;
+    firstRow=turnList.head->position->row+17;
+    secondCol=turnList.tail->position->col+1;
+    secondRow=turnList.tail->position->row+17;
+    if(player==TOP_PLAYER)
+    {
+        printf("player TOP_DOWN's turn\n");
+    }
+    else if(player==BOTTOM_PLAYER)
+    {
+        printf("player BOTTOM_UP's turn\n");
+    }
+    printf("%c%c->%c%c\n",firstRow,firstCol,secondRow,secondCol);
+    printBoard(board);
     //Free to the list of lists and all the lists inside of it
+    freeListOfLists(listOfLists);
 }

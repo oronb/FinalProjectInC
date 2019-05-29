@@ -11,6 +11,7 @@ SingleSourceMovesTree *FindSingleSourceMoves(Board board, checkersPos *src)
     SingleSourceMovesTreeNode* curr;
     char posRow=src->row;
     char posCol=src->col;
+    //free(src);
     unsigned char currSymbol=board[posRow - '0'][posCol - '0'];
     Player currPlayer;
     Player otherPlayer;

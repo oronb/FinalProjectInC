@@ -12,6 +12,7 @@
 #include <Turn.h>
 #include <LoadBoard.h>
 #include <StoreBoard.h>
+#include <PlayGame.h>
 //Define Functions
 
 /*SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree); //2
@@ -27,22 +28,26 @@ void main()
     Board board;
     Board boardA;
     createBoard(board);
-    /*board[2][3]=BOTTOM_PLAYER;
-    board[2][5]=BOTTOM_PLAYER;
-    board[4][5]=BOTTOM_PLAYER;
-    board[5][4]=SYMBOL;*/
 
-    /*board[0][1]=SYMBOL;
+    //Problem that Player two stuck on H5->H5
+    board[1][2]=SYMBOL;
     board[1][4]=SYMBOL;
-    board[2][3]=SYMBOL;
-    board[3][4]=TOP_PLAYER;
-    board[4][1]=TOP_PLAYER;
-    board[4][3]=TOP_PLAYER;
-    board[5][4]=TOP_PLAYER;
-*/
-    StoreBoard(board);
-    LoadBoard("board.bin",boardA);
-    printBoard(boardA);
+    board[1][6]=SYMBOL;
+    board[2][1]=SYMBOL;
+    board[2][5]=BOTTOM_PLAYER;
+    board[2][7]=SYMBOL;
+    board[3][4]=BOTTOM_PLAYER;
+    board[5][2]=SYMBOL;
+    board[5][6]=SYMBOL;
+    board[7][6]=SYMBOL;
+
+
+    PlayGame(board,TOP_PLAYER);
+    //printBoard(board);
+    //StoreBoard(board);
+    //LoadBoard("board.bin",boardA);
+    //Turn(board,TOP_PLAYER);
+    //printBoard(boardA);
     //Turn(board,BOTTOM_PLAYER);
     //printBoard(board);
 

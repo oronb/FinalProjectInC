@@ -62,6 +62,8 @@ SingleSourceMovesListCell* createNewListNode(checkersPos position, unsigned shor
 }
 
 void insertNodeToEndList(SingleSourceMovesList* lst, SingleSourceMovesListCell * newTail) {
+    newTail->next = NULL;
+
     if (isEmptyList(lst))
     {
         lst->head = lst->tail = newTail;
@@ -100,6 +102,7 @@ MultipleSourceMovesListCell* createNewListOfListsNode(SingleSourceMovesList* lst
     res = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
     //checkAlloc(res);
     res->single_source_moves_list=lst;
+    res->next=next;
 
     return res;
 }
@@ -125,4 +128,30 @@ int isEmptyListOfLists(const MultipleSourceMovesList* lst)
 void makeEmptyListOfLists(MultipleSourceMovesList* lst)
 {
     (*lst).head = (*lst).tail = NULL;
+}
+
+void freeListOfLists(MultipleSourceMovesList* lol)
+{
+    MultipleSourceMovesListCell* currlolNode;
+    currlolNode=lol->head;
+    while(currlolNode != NULL)
+    {
+        freeList(currlolNode->single_source_moves_list);
+        currlolNode=currlolNode->next;
+    }
+    free(lol);
+}
+
+void freeList(SingleSourceMovesList* list)
+{
+    SingleSourceMovesListCell* curr=list->head;
+    SingleSourceMovesListCell* temp;
+    while(curr != NULL)
+    {
+        temp=curr->next;
+        free(curr->position);
+        free(curr);
+        curr=temp;
+    }
+    free(list);
 }

@@ -37,3 +37,5 @@ MultipleSourceMovesListCell* createNewListOfListsNode(SingleSourceMovesList* lst
 void insertNodeToEndListOfLists(MultipleSourceMovesList* lst, MultipleSourceMovesListCell * newTail);
 int isEmptyListOfLists(const MultipleSourceMovesList* lst);
 void makeEmptyListOfLists(MultipleSourceMovesList* lst);
+void freeListOfLists(MultipleSourceMovesList* lol);
+void freeList(SingleSourceMovesList* list);
