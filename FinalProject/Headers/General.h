@@ -1,5 +1,4 @@
 #pragma once
-
 #define BOARD_SIZE 8
 
 typedef struct _checkersPos
@@ -53,3 +52,4 @@ typedef struct _multipleSourceMovesList {
     MultipleSourceMovesListCell *head;
     MultipleSourceMovesListCell *tail;
 } MultipleSourceMovesList;
+

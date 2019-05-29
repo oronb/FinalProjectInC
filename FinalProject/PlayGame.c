@@ -12,6 +12,8 @@
 
 void PlayGame(Board board, Player starting_player)
 {
+    for ( int i = 0; i < 50; i++ ) // 50 is arbitrary
+        printf("\n");
     printBoard(board);
     char currPlayer, otherPlayer;
     if(starting_player==TOP_PLAYER)
@@ -24,18 +26,28 @@ void PlayGame(Board board, Player starting_player)
         currPlayer=BOTTOM_PLAYER;
         otherPlayer=TOP_PLAYER;
     }
-
-    //while(!endGame(board,currPlayer))
-    //{
+    StoreBoard(board);
+    while(!endGame(board,currPlayer))
+    {
         if(!endGame(board,currPlayer))
-         Turn(board,currPlayer);
-     /*   if(!endGame(board,otherPlayer))
+        {
+            LoadBoard("board.bin",board);
+            Turn(board,currPlayer);
+            StoreBoard(board);
+        }
+
+        if(!endGame(board,otherPlayer))
+        {
+            LoadBoard("board.bin",board);
             Turn(board,otherPlayer);
+            StoreBoard(board);
+        }
+
         else
         {
             return;
         }
-    }*/
+    }
 }
 
 BOOL endGame(Board board, Player player)
@@ -47,7 +59,7 @@ BOOL endGame(Board board, Player player)
         if BOTTOM_PLAYER reached to row A
      */
 
-    if(checkIfPlayerRunOutOfTools(board,player) || checkIfTopReachedToBottom(board) || checkIfTopReachedToBottom(board))
+    if(checkIfPlayerRunOutOfTools(board,player) || checkIfTopReachedToBottom(board) || checkIfBottomReachedToTop(board))
         return TRUE;
     else
         return FALSE;

@@ -6,17 +6,20 @@
 #include <Tree.h>
 #include <FindAllPossiblePlayerMoves.h>
 #include <printBoard.h>
+#include <Turn.h>
+#include <curses.h>
+#include <unistd.h>
 
 void Turn(Board board, Player player)
 {
-    SingleSourceMovesListCell* currL; //single List
+    SingleSourceMovesListCell* currL=NULL; //single List
     SingleSourceMovesList turnList; //Selected list
     MultipleSourceMovesListCell* currLol; //Multiple list cell
     MultipleSourceMovesList* listOfLists; //Multiple list
     unsigned short maxCaptures=0,currListCaptures;
     char currPlayer;
     int firstCol,firstRow,secondCol,secondRow,moveCol,moveRow;
-
+    makeEmptyList(&turnList);
   //  makeEmptyListOfLists(listOfLists);
     listOfLists=FindAllPossiblePlayerMoves(board,player);
     if(listOfLists->head==NULL)
@@ -35,7 +38,7 @@ void Turn(Board board, Player player)
         {
             currListCaptures = currLol->single_source_moves_list->tail->captures;
 
-            if (currListCaptures >= maxCaptures)
+            if (currListCaptures >= maxCaptures && currLol->single_source_moves_list->head->next != NULL)
             {
                 maxCaptures = currListCaptures;
                 turnList = *(currLol->single_source_moves_list);
@@ -44,7 +47,10 @@ void Turn(Board board, Player player)
         }
 
         //Make the turn
-        currL = turnList.head;
+        if(turnList.head != NULL && turnList.head->next != NULL)
+            currL = turnList.head;
+        else
+            return;
         while (currL->next != NULL)
         {
             firstCol=currL->position->col - '0';
@@ -74,6 +80,7 @@ void Turn(Board board, Player player)
     firstRow=turnList.head->position->row+17;
     secondCol=turnList.tail->position->col+1;
     secondRow=turnList.tail->position->row+17;
+    sleep(2);
     if(player==TOP_PLAYER)
     {
         printf("player TOP_DOWN's turn\n");
@@ -83,7 +90,14 @@ void Turn(Board board, Player player)
         printf("player BOTTOM_UP's turn\n");
     }
     printf("%c%c->%c%c\n",firstRow,firstCol,secondRow,secondCol);
+    clearscr();
     printBoard(board);
     //Free to the list of lists and all the lists inside of it
     freeListOfLists(listOfLists);
+}
+
+void clearscr ( )
+{
+    for ( int i = 0; i < 50; i++ ) // 50 is arbitrary
+        printf("\n");
 }
