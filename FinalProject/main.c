@@ -10,7 +10,8 @@
 #include <Tree.h>
 #include <StoreBoard.h>
 #include <Turn.h>
-
+#include <LoadBoard.h>
+#include <StoreBoard.h>
 //Define Functions
 
 /*SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_tree); //2
@@ -24,6 +25,7 @@ void main()
 {
 
     Board board;
+    Board boardA;
     createBoard(board);
     /*board[2][3]=BOTTOM_PLAYER;
     board[2][5]=BOTTOM_PLAYER;
@@ -39,7 +41,8 @@ void main()
     board[5][4]=TOP_PLAYER;
 */
     StoreBoard(board);
-    //printBoard(board);
+    LoadBoard("board.bin",boardA);
+    printBoard(boardA);
     //Turn(board,BOTTOM_PLAYER);
     //printBoard(board);
 

@@ -1,8 +1,6 @@
-//
-// Created by Oron Bortman on 2019-05-13.
-//
+#pragma once
+#include <stdio.h>
+#include <stdlib.h>
+#include <General.h>
 
-#ifndef FINALPROJECT_LOADBOARD_H
-#define FINALPROJECT_LOADBOARD_H
-
-#endif //FINALPROJECT_LOADBOARD_H
+void LoadBoard(char *filename, Board board);
