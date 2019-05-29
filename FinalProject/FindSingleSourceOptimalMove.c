@@ -15,37 +15,37 @@ SingleSourceMovesList *FindSingleSourceOptimalMove(SingleSourceMovesTree *moves_
     return lst;
 }
 
-void cleanBranches(SingleSourceMovesTreeNode* curr, int* length)
+void cleanBranches(SingleSourceMovesTreeNode* curr, int* totalCaptures)
 {
-    int lengthLeft=0,lengthRight=0;
+    //int lengthLeft=0,lengthRight=0,totalCapturesLeft=0,totalcaptureRight=0;
+    int totalCapturesLeft=0,totalCapturesRight=0;
 
     if(curr->next_move[RIGHT_MOVE_INDEX] == NULL && curr->next_move[LEFT_MOVE_INDEX] == NULL)
     {
-        *length=0;
+        //*length=0;
+        *totalCaptures=curr->total_captures_so_far;
         return;
     }
     else
     {
         if(curr->next_move[RIGHT_MOVE_INDEX] != NULL)
         {
-            cleanBranches(curr->next_move[RIGHT_MOVE_INDEX],&lengthRight);
-            lengthRight++;
+            cleanBranches(curr->next_move[RIGHT_MOVE_INDEX],&totalCapturesRight);
         }
         if(curr->next_move[LEFT_MOVE_INDEX] != NULL)
         {
-            cleanBranches(curr->next_move[LEFT_MOVE_INDEX],&lengthLeft);
-            lengthLeft++;
+            cleanBranches(curr->next_move[LEFT_MOVE_INDEX],&totalCapturesLeft);
         }
-        if(lengthLeft >= lengthRight)
+        if(totalCapturesLeft >= totalCapturesRight)
         {
-            *length=lengthLeft;
+            *totalCaptures=totalCapturesLeft;
             if(curr->next_move[RIGHT_MOVE_INDEX] != NULL)
                 freeTreeRec(curr->next_move[RIGHT_MOVE_INDEX]);
             curr->next_move[RIGHT_MOVE_INDEX]=NULL;
         }
         else
         {
-            *length=lengthRight;
+            *totalCaptures=totalCapturesRight;
             if(curr->next_move[LEFT_MOVE_INDEX] != NULL)
                 freeTreeRec(curr->next_move[LEFT_MOVE_INDEX]);
             curr->next_move[LEFT_MOVE_INDEX]=NULL;

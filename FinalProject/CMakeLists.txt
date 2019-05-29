@@ -12,12 +12,13 @@ add_executable(FinalProject
        Headers/FindSingleSourceOptimalMove.h
         Headers/General.h
         Headers/Tree.h
-     #   Headers/LoadBoard.h
-     #   Headers/PlayGame.h
+       Headers/LoadBoard.h
+        Headers/PlayGame.h
         Headers/StoreBoard.h
-      #  Headers/Turn.h
+        Headers/Turn.h
         Headers/List.h
         Headers/printBoard.h
+        Headers/File.h
         Headers/FindSingleSourceMoves.h
         Headers/TestingFindSingleSourceOptimalMove.h
        Headers/TestingFindAllPossiblePlayerMoves.h
@@ -28,13 +29,13 @@ add_executable(FinalProject
         Tree.c
         createBoard.c
         FindAllPossiblePlayerMoves.c
-       # FindSingleSourceMoves.c
         FindSingleSourceOptimalMove.c
-      #  LoadBoard.c
+        LoadBoard.c
         main.c
-      #  PlayGame.c
+        File.c
+       PlayGame.c
         StoreBoard.c
-       # Turn.c
+        Turn.c
         printBoard.c
         FindSingleSourceMoves.c
         )

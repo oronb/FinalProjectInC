@@ -64,6 +64,7 @@ void freeTreeRec(SingleSourceMovesTreeNode *root)
     {
         freeTreeRec(root->next_move[RIGHT_MOVE_INDEX]);
         freeTreeRec(root->next_move[LEFT_MOVE_INDEX]);
+        free(root->pos);
         free(root);
     }
 }

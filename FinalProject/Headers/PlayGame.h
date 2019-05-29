@@ -1,8 +1,8 @@
-//
-// Created by Oron Bortman on 2019-05-13.
-//
+#pragma once
+#include <General.h>
 
-#ifndef FINALPROJECT_PLAYGAME_H
-#define FINALPROJECT_PLAYGAME_H
-
-#endif //FINALPROJECT_PLAYGAME_H
+void PlayGame(Board board, Player starting_player);
+BOOL endGame(Board board, Player player);
+BOOL checkIfPlayerRunOutOfTools(Board board, Player player);
+BOOL checkIfTopReachedToBottom(Board board);
+BOOL checkIfBottomReachedToTop(Board board);
