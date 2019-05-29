@@ -30,9 +30,9 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
     listOfLists = (MultipleSourceMovesList*)malloc(sizeof(MultipleSourceMovesList));
     makeEmptyListOfLists(listOfLists);
 
-    for(r = 0, row='0'; r < BOARD_SIZE; r++,row++)
+    for(r = 7, row='7'; r < BOARD_SIZE; r++,row++)
     {
-        for(c = 0,col='0'; c < BOARD_SIZE; c++,col++)
+        for(c = 4,col='4'; c < BOARD_SIZE; c++,col++)
         {
             //Check if player exists in position
             if(board[r][c] == player)

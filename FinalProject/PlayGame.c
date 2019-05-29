@@ -25,16 +25,17 @@ void PlayGame(Board board, Player starting_player)
         otherPlayer=TOP_PLAYER;
     }
 
-    while(!endGame(board,currPlayer))
-    {
-        Turn(board,currPlayer);
-        if(!endGame(board,otherPlayer))
+    //while(!endGame(board,currPlayer))
+    //{
+        if(!endGame(board,currPlayer))
+         Turn(board,currPlayer);
+     /*   if(!endGame(board,otherPlayer))
             Turn(board,otherPlayer);
         else
         {
             return;
         }
-    }
+    }*/
 }
 
 BOOL endGame(Board board, Player player)

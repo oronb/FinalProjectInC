@@ -42,7 +42,7 @@ void main()
     board[7][6]=SYMBOL;
 
 
-    PlayGame(board,TOP_PLAYER);
+    PlayGame(board,BOTTOM_PLAYER);
     //printBoard(board);
     //StoreBoard(board);
     //LoadBoard("board.bin",boardA);

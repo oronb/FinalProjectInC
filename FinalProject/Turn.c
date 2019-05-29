@@ -19,6 +19,10 @@ void Turn(Board board, Player player)
 
   //  makeEmptyListOfLists(listOfLists);
     listOfLists=FindAllPossiblePlayerMoves(board,player);
+    if(listOfLists->head==NULL)
+    {
+        return;
+    }
     currLol=listOfLists->head;
 
     //Find the best route
